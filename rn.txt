@@ -1,0 +1,45 @@
+const box = document.getElementById('many');
+const err = document.getElementById('err');
+const btn = document.querySelector('button');
+const sound = document.getElementById('sound');
+const input = document.getElementById('input');
+const url = "https://api.dictionaryapi.dev/api/v2/entries/en";
+
+btn.addEventListener('click',()=>{
+  const text = input.value;
+  fetch(`${url}/${text}`)
+  .then(response => response.json())
+ .then(data => {
+box.classList.remove('p-3', 'bg-red-200', 'mx-4', 'text-[20px]', 'rounded');
+  box.innerHTML = `
+  <div class="w-[18rem] md:w-[38rem] my-6 mx-4">
+    <div class="flex flex-row justify-between p-3">
+      <div>
+      <h3 class="text-4xl">${text}</h3>
+
+      <p class="text-slate-400 text-[20px]">${data[0].meanings[0].partOfSpeech} ${data[0].phonetic}</p>
+      </div>
+
+      <button onclick="playSound()" class="mr-4 float-right h-auto">
+        <i class="w-10 h-10 fa fa-volume-up" aria-hidden="true"></i>
+      </button>
+
+    </div>
+    <div>
+     <div class="ml-2 italic text-[22px] border-l-4 border-blue-500 pl-1">${data[0].meanings[0].definitions[0].definition}</div>
+
+  <div class="p-3 bg-slate-200 mt-5 text-[20px] rounded">${data[0].meanings[0].definitions[0].example}</div>
+    </div>
+  </div>
+  `;
+  sound.setAttribute("src",`${data[0].phonetics[1].audio}`);
+ })
+  .catch(() => {
+  box.classList.add('p-3','bg-red-200','mx-4','text-[20px]','rounded');
+  box.innerHTML="Couldn't Find The Word";
+  });
+});
+
+function playSound(){
+  sound.play();
+}

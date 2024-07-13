@@ -1,9 +1,9 @@
 {
   "name": "school_inquiry",
   "version": "1.0.0",
-  "main": "src/main.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "npx tailwindcss -i ./src/input.css -o ./build/output.css --watch"
+    "dev": "npx tailwindcss -i ./src/input.css -o ./build/style.css --watch"
   },
   "repository": {
     "type": "git",
