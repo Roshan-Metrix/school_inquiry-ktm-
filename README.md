@@ -1,3 +1,3 @@
 //visit
 
-https://neptech-roshan.github.io/school_inquiry-ktm-/
+https://roshan-metrix.github.io/school_inquiry-ktm-/
